@@ -123,7 +123,8 @@ ko.bindingHandlers.dataTable = {
         if (binding.rowTemplate && binding.rowTemplate !== '') {
             options.fnRowCallback = function (row, data, displayIndex, displayIndexFull) {
                 // Render the row template for this row.
-                ko.renderTemplate(binding.rowTemplate, data, null, row, "replaceChildren");
+                 var childBindingContext = bindingContext.createChildContext(data);
+                ko.renderTemplate(binding.rowTemplate, childBindingContext, null, row, "replaceChildren");
                 return row;
             };
         }
